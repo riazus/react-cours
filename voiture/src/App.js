@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Vegeta from "./components/Vegeta";
 import Goku from "./components/Goku";
+import AddHits from "./components/AddHits";
 
 class App extends Component {
   constructor(props) {
@@ -16,8 +17,17 @@ class App extends Component {
         <hr />
 
         <div className="row">
-          <Vegeta />
-          <Goku />
+          <AddHits
+            render={(hits, addOne, name) => (
+              <Vegeta hits={hits} addOne={addOne} name="Vegeta" />
+            )}
+          />
+
+          <AddHits
+            render={(hits, addOne, name) => (
+              <Goku hits={hits} addOne={addOne} name="Goku" />
+            )}
+          />
         </div>
       </div>
     );
