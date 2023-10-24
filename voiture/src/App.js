@@ -1,11 +1,11 @@
 import ParentComponent from "./components/ParentComponent";
 
-function App() {
-  return (
-    <div className="App">
       <ParentComponent></ParentComponent>
-    </div>
+    <div className="App">
   );
+    </div>
+  return (
+function App() {
 }
 
 export default App;
