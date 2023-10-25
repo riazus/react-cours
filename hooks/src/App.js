@@ -1,12 +1,10 @@
 import "./App.css";
-import ClassCount from "./components/ClassCount";
-import FunctionCount from "./components/FunctionCount";
+import Container from "./components/Container";
 
 function App() {
   return (
-    <div className="container">
-      {/* <ClassCount/> */}
-      <FunctionCount/>
+    <div className="text-center">
+      <Container/>
     </div>
   );
 }
