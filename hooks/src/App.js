@@ -1,10 +1,10 @@
 import "./App.css";
-import Container from "./components/Container";
+import Count from "./components/Count";
 
 function App() {
   return (
     <div className="text-center">
-      <Container/>
+      <Count/>
     </div>
   );
 }
