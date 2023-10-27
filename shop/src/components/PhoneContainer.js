@@ -3,7 +3,7 @@ import phone from "../images/phone.png";
 import { useSelector, useDispatch } from "react-redux";
 import { buyPhone } from "../redux/phone/actionPhone";
 
-function PhoneComponent() {
+function PhoneContainer() {
   const phones = useSelector((state) => state.phones);
   const dispatch = useDispatch();
 
@@ -19,4 +19,4 @@ function PhoneComponent() {
   );
 }
 
-export default PhoneComponent;
+export default PhoneContainer;
