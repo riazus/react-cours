@@ -1,31 +1,27 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { buyTv } from "../redux/tv/actionTv";
 
-function TvContainer(props) {
-  console.log(props);
+export default function TvContainer() {
+  const [tvBuying, setTvBuying] = useState(1);
+  const tvCount = useSelector((state) => state.television.tv);
+  const dispatch = useDispatch();
+
   return (
     <div className="container">
       <img alt="tv"></img>
       <p>
-        Disponibilite:
-        <span id="count">{props.tv}</span>
+        Disponibilite
+        <span id="count">{tvCount}</span>
       </p>
-      <button>Acheter</button>
+      <div>
+        <button onClick={() => dispatch(buyTv(tvBuying))}>Acheter</button>
+        <input
+          type="number"
+          onChange={(e) => setTvBuying(e.target.value)}
+          value={tvBuying}
+        ></input>
+      </div>
     </div>
   );
 }
-
-const mapStateToProps = (state) => {
-  return {
-    tv: state.television.tv,
-  };
-};
-
-const mapDispatchToProps = () => {
-  return {
-    buyTv: () => dispatch(buyTv()),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(TvContainer);

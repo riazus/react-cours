@@ -7,7 +7,7 @@ const initialStatePhone = {
 const phoneReducer = (state = initialStatePhone, action) => {
   switch (action.type) {
     case BUY_PHONE:
-      return { ...state, phones: state.phones - 1 };
+      return { ...state, phones: state.phones - action.payload };
     default:
       return state;
   }
