@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addBook } from "../redux/actions/actionAddBooks";
+import {
+  addBook,
+  deleteAllBook,
+  deleteBook,
+} from "../redux/actions/actionAddBooks";
+import FlipMove from "react-flip-move";
 
-function AddBooks({ libraryData, addBook }) {
+function AddBooks({ libraryData, addBook, deleteBook, deleteAllBook }) {
   const initialState = {
     title: "",
     author: "",
@@ -20,24 +25,31 @@ function AddBooks({ libraryData, addBook }) {
 
   const displayBooks =
     libraryData.length > 0 ? (
-      libraryData.map((data) => {
-        return (
-          <li
-            key={data.id}
-            className="list-group-item list-group-item-light d-flex justify-content-between"
-          >
-            <span>
-              <strong>Titre: </strong>
-              {data.title}
-            </span>
-            <span>
-              <strong>Author: </strong>
-              {data.author}
-            </span>
-            <span className="btn btn-danger">x</span>
-          </li>
-        );
-      })
+      <FlipMove>
+        {libraryData.map((data) => {
+          return (
+            <li
+              key={data.id}
+              className="list-group-item list-group-item-light d-flex justify-content-between"
+            >
+              <span>
+                <strong>Titre: </strong>
+                {data.title}
+              </span>
+              <span>
+                <strong>Author: </strong>
+                {data.author}
+              </span>
+              <span
+                className="btn btn-danger"
+                onClick={() => deleteBook(data.id)}
+              >
+                x
+              </span>
+            </li>
+          );
+        })}
+      </FlipMove>
     ) : (
       <li className="list-group-item list-group-item-light d-flex justify-content-center">
         registered books here
@@ -46,7 +58,7 @@ function AddBooks({ libraryData, addBook }) {
 
   const deleteBooksBtn = libraryData.length > 0 && (
     <div className="d-flex justify-content-center">
-      <button className="btn btn-danger mt-4 mb-5">Delete all books</button>
+      <button onClick={() => deleteAllBook()} className="btn btn-danger mt-4 mb-5">Delete all books</button>
     </div>
   );
 
@@ -108,6 +120,8 @@ const addStateToProps = (state) => {
 const addDispatchToProps = (dispatch) => {
   return {
     addBook: (param) => dispatch(addBook(param)),
+    deleteBook: (id) => dispatch(deleteBook(id)),
+    deleteAllBook: () => dispatch(deleteAllBook()),
   };
 };
 
