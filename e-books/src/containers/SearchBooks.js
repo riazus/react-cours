@@ -1,9 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchBooks } from "../redux/actions/actionFetchBooks";
+import { addBook } from "../redux/actions/actionAddBooks";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function SearchBooks() {
   const [subject, setSubject] = useState("");
+  const [clickedIds, setClickedIds] = useState([]);
 
   const state = useSelector((state) => state.search);
   const dispatch = useDispatch();
@@ -13,9 +17,17 @@ function SearchBooks() {
     dispatch(fetchBooks(subject));
   };
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  const handleSave = (id, title, author) => {
+    const bookToSave = { title, author };
+    dispatch(addBook(bookToSave));
+
+    toast.success("Book registered!");
+    setClickedIds([...clickedIds, id]);
+  };
+
+  const handleIsDesabled = (id) => {
+    return clickedIds.includes(id);
+  };
 
   const displayedFetchedBooks = state.isLoading ? (
     <div className="d-flex justify-content-center">
@@ -63,9 +75,20 @@ function SearchBooks() {
               >
                 More info
               </a>
-              <button className="btn btn-outline-secondary pl-3">
-                Register
-              </button>
+              {!handleIsDesabled(item.id) && (
+                <button
+                  className="btn btn-outline-secondary pl-3"
+                  onClick={() =>
+                    handleSave(
+                      item.id,
+                      item.volumeInfo.title,
+                      item.volumeInfo.authors
+                    )
+                  }
+                >
+                  Register
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -104,8 +127,20 @@ function SearchBooks() {
       </div>
 
       <div className="container" style={{ minHeight: "200px" }}>
-      {displayedFetchedBooks}
+        {displayedFetchedBooks}
       </div>
+
+      <ToastContainer
+        position="bottom-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </main>
   );
 }

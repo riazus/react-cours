@@ -34,7 +34,6 @@ export const fetchBooks = (subject) => {
         `https://www.googleapis.com/books/v1/volumes?q=${subject}&maxResults=20`
       )
       .then((res) => {
-        console.log(res);
         dispatch(fetchBooksSuccess(res.data.items));
       })
       .catch((e) => {
