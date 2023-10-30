@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function NavBar() {
   return (
     <header>
-      <div className="d-flex flex-column flex-md-row p-3 border-bottom bg-secondary text-white">
+      <div className="d-flex flex-column flex-md-row p-3 border-bottom bg-secondary text-white justify-content-between">
         <h4 className="mr-md-auto">
           <Link to="/" className="text-decoration-none text-white">
             BOOKS
