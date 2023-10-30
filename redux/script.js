@@ -1,46 +1,46 @@
 const BUY_PHONE = "BUY_PHONE";
-const BUY_TABLET = "BUY_TABLET";
+const BUY_PHONE_GOLD = "BUY_PHONE_GOLD";
 const BUY_TV = "BUY_TV";
 
-function buyPhone() {
+const actionBuyPhone = () => {
   return {
     type: BUY_PHONE,
   };
-}
+};
 
-function buyTablet() {
+const actionBuyPhoneGold = () => {
   return {
-    type: BUY_TABLET,
+    type: BUY_PHONE_GOLD,
   };
-}
+};
 
-function buyTv() {
+const actionBuyTv = () => {
   return {
     type: BUY_TV,
   };
-}
-
-const initialStatePhone = {
-  phones: 5,
-  tablet: 10,
 };
 
-const initialStateTv = {
-  tv: 20,
+const phoneInitialeState = {
+  phones: 20,
+  goldPhones: 5,
 };
 
-const phonesReducer = (state = initialStatePhone, action) => {
+const tvInitialState = {
+  tv: 15,
+};
+
+const reducerPhone = (state = phoneInitialeState, action) => {
   switch (action.type) {
     case BUY_PHONE:
       return { ...state, phones: state.phones - 1 };
-    case BUY_TABLET:
-      return { ...state, tablet: state.tablet - 1 };
+    case BUY_PHONE_GOLD:
+      return { ...state, goldPhones: state.goldPhones - 1 };
     default:
       return state;
   }
 };
 
-const tvReducer = (state = initialStateTv, action) => {
+const reducerTv = (state = tvInitialState, action) => {
   switch (action.type) {
     case BUY_TV:
       return { ...state, tv: state.tv - 1 };
@@ -49,36 +49,37 @@ const tvReducer = (state = initialStateTv, action) => {
   }
 };
 
-// combine reducers
 const rootReducer = Redux.combineReducers({
-  phone: phonesReducer,
-  tv: tvReducer,
+  phone: reducerPhone,
+  tv: reducerTv,
 });
 
-// create store
 const store = Redux.createStore(rootReducer);
 
 const availablePhones = document.getElementById("count");
-const availableTablettes = document.getElementById("count-tab");
+const availableGoldPhones = document.getElementById("count-gold");
 const availableTv = document.getElementById("count-tv");
+
 availablePhones.innerHTML = store.getState().phone.phones;
-availableTablettes.innerHTML = store.getState().phone.tablet;
+availableGoldPhones.innerHTML = store.getState().phone.goldPhones;
 availableTv.innerHTML = store.getState().tv.tv;
 
-document.getElementById("buy-phone").addEventListener("click", () => {
-  store.dispatch(buyPhone());
-});
+const buyPhoneBtn = document.getElementById("buy-phone");
+const buyGoldPhoneBtn = document.getElementById("buy-gold-phone");
+const buyTvBtn = document.getElementById("buy-tv");
 
-document.getElementById("buy-tablet").addEventListener("click", () => {
-  store.dispatch(buyTablet());
+buyPhoneBtn.addEventListener("click", () => {
+  store.dispatch(actionBuyPhone());
 });
-
-document.getElementById("buy-tv").addEventListener("click", () => {
-  store.dispatch(buyTv());
+buyGoldPhoneBtn.addEventListener("click", () => {
+  store.dispatch(actionBuyPhoneGold());
+});
+buyTvBtn.addEventListener("click", () => {
+  store.dispatch(actionBuyTv());
 });
 
 store.subscribe(() => {
   availablePhones.innerHTML = store.getState().phone.phones;
-  availableTablettes.innerHTML = store.getState().phone.tablet;
+  availableGoldPhones.innerHTML = store.getState().phone.goldPhones;
   availableTv.innerHTML = store.getState().tv.tv;
 });
