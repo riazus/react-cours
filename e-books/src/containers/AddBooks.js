@@ -58,7 +58,12 @@ function AddBooks({ libraryData, addBook, deleteBook, deleteAllBook }) {
 
   const deleteBooksBtn = libraryData.length > 0 && (
     <div className="d-flex justify-content-center">
-      <button onClick={() => deleteAllBook()} className="btn btn-danger mt-4 mb-5">Delete all books</button>
+      <button
+        onClick={() => deleteAllBook()}
+        className="btn btn-danger mt-4 mb-5"
+      >
+        Delete all books
+      </button>
     </div>
   );
 
@@ -67,7 +72,7 @@ function AddBooks({ libraryData, addBook, deleteBook, deleteAllBook }) {
       <div className="jubotron jubotron-fluid">
         <div className="container text-center">
           <h1 className="display-4">BOOKS</h1>
-          <p>Add books to the biblioatecque</p>
+          <p>Add books to the library</p>
 
           <form
             className="form-inline justify-content-center"
@@ -90,7 +95,7 @@ function AddBooks({ libraryData, addBook, deleteBook, deleteAllBook }) {
                 onChange={(e) => setData({ ...data, author: e.target.value })}
                 required
               />
-              <div className="form-group">
+              <div className="form-group mt-3">
                 <button className="btn btn-outline-secondary ml-1">
                   Add Book
                 </button>
