@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { buyTv } from "../redux/tv/actionTv";
+import tv from "../images/tv.png";
 
 export default function TvContainer() {
   const [tvBuying, setTvBuying] = useState(1);
@@ -9,10 +10,10 @@ export default function TvContainer() {
 
   return (
     <div className="container">
-      <img alt="tv"></img>
+      <img src={tv} alt="tv"></img>
       <p>
-        Disponibilite
-        <span id="count">{tvCount}</span>
+        Disponibilite:
+        <span id="count"> {tvCount}</span>
       </p>
       <div>
         <button onClick={() => dispatch(buyTv(tvBuying))}>Acheter</button>
