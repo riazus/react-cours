@@ -54,7 +54,7 @@ const commentSlice = createSlice({
       state.comments = action.payload;
       state.error = "";
     });
-    builder.addCase(fetchComments.rejected, (state) => {
+    builder.addCase(fetchComments.rejected, (state, action) => {
       state.isLoading = false;
       state.comments = [];
       state.error = action.error.message;
