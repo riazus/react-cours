@@ -18,16 +18,18 @@ export default function TvView() {
         <span className="count">{tvs}</span>
       </p>
 
-      <div className="btnContainer">
-        <button
-          onClick={() => {
-            dispatch(actionTv(buyTvCount));
-          }}
-        >
-          Acheter
-        </button>
-        <InputNum count={buyTvCount} setCount={setBuyTvCount} />
-      </div>
+      {tvs > 0 && (
+        <div className="btnContainer">
+          <button
+            onClick={() => {
+              dispatch(actionTv(buyTvCount));
+            }}
+          >
+            Acheter
+          </button>
+          <InputNum count={buyTvCount} setCount={setBuyTvCount} />
+        </div>
+      )}
     </div>
   );
 }

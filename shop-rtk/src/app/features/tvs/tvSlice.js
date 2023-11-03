@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { addPhones } from "../phones/phoneSlice";
 
 const initialState = {
   tvs: 20,

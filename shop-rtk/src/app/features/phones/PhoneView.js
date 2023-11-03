@@ -21,16 +21,18 @@ export default function PhoneView() {
           <span className="count">{phones}</span>
         </p>
 
-        <div className="btnContainer">
-          <button
-            onClick={() => {
-              dispatch(phonesAction(buyPhoneCount));
-            }}
-          >
-            Acheter
-          </button>
-          <InputNum count={buyPhoneCount} setCount={setBuyPhoneCount} />
-        </div>
+        {phones > 0 && (
+          <div className="btnContainer">
+            <button
+              onClick={() => {
+                dispatch(phonesAction(buyPhoneCount));
+              }}
+            >
+              Acheter
+            </button>
+            <InputNum count={buyPhoneCount} setCount={setBuyPhoneCount} />
+          </div>
+        )}
       </div>
       <div className="container">
         <img src={tablet} alt="tablet"></img>
@@ -39,16 +41,18 @@ export default function PhoneView() {
           <span className="count">{tablets}</span>
         </p>
 
-        <div className="btnContainer">
-          <button
-            onClick={() => {
-              dispatch(tabletsAction(buyTabletCount));
-            }}
-          >
-            Acheter
-          </button>
-          <InputNum count={buyTabletCount} setCount={setBuyTabletCount} />
-        </div>
+        {tablets > 0 && (
+          <div className="btnContainer">
+            <button
+              onClick={() => {
+                dispatch(tabletsAction(buyTabletCount));
+              }}
+            >
+              Acheter
+            </button>
+            <InputNum count={buyTabletCount} setCount={setBuyTabletCount} />
+          </div>
+        )}
       </div>
     </>
   );
