@@ -24,7 +24,7 @@ const fetchBooksSlice = createSlice({
     });
     builder.addCase(fetchBooks.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.books = action.payload;
+      state.books = action.payload.items;
       state.error = "";
     });
     builder.addCase(fetchBooks.rejected, (state, action) => {

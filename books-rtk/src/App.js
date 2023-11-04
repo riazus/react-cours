@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Jumbotron from "./components/Jumbotron";
 import LibraryView from "./features/library/LibraryView";
 import FetchBooksView from "./features/fetchBooks/FetchBooksView";
 
